@@ -1,29 +1,27 @@
-let ParagraphEl = document.querySelector('.p-el')
-let DecreaseEl = document.querySelector('.Decrease-el')
-let Resetel = document.querySelector('.Reset-el')
-let IncreaseEl = document.querySelector('.Increase-el')
-let clicks = 1;
-let Minusclicks = 0
-let Reset = 0
+const value = document.querySelector('.p-el')
+let count = 0;
+// Buttons
 
-IncreaseEl.addEventListener('click', function(){
-    ParagraphEl.textContent = clicks++
-    if (clicks > 0){ 
-   ParagraphEl.style.color = "#83ff08"
-    }
-    else if (clicks < 0) {
-        ParagraphEl.style.color = "#d21404"
-        
-    }
-})
-DecreaseEl.addEventListener('click', function(){
-ParagraphEl.textContent = clicks--
-if (clicks < 0){
-    ParagraphEl.style.color = "#d21404"
-     }
-     
-})
-Resetel.addEventListener('click', function(){
-    ParagraphEl.textContent = 0;
-    clicks = 0
+const Buttons = document.querySelectorAll('.btn')
+// Function
+
+Buttons.forEach(function(btn){
+    btn.addEventListener('click', function(e){
+        let style = e.currentTarget.classList;
+        if (style.contains('decrease')){
+            count--
+        }else if (style.contains('increase')){
+            count++
+        }else {
+            count = 0;
+        }
+        value.textContent = count;
+        if (count > 0){
+            value.style.color = '#83ff08'
+        }else if (count < 0){
+            value.style.color = '#d21404'
+        }else {
+            value.style.color = 'white  '
+        }
+    })
 })
